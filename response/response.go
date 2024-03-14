@@ -1,8 +1,8 @@
 package response
 
-type Response interface {
+type Response[D any] interface {
 	StatusCode() int
 	GetBody() ([]byte, error)
 	Error() string
-	GetData() interface{}
+	GetData() D
 }

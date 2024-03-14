@@ -4,47 +4,47 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/ncostamagna/gocourse_meta/meta"
+	"github.com/ncostamagna/go_lib_response/meta"
 )
 
-type SuccessResponse struct {
+type SuccessResponse [D any] struct {
 	Message string      `json:"message"`
 	Status  int         `json:"status"`
-	Data    interface{} `json:"data"`
+	Data    D `json:"data"`
 	Meta    *meta.Meta  `json:"meta,omitempty"`
 }
 
-func OK(msg string, data interface{}, meta *meta.Meta) Response {
+func OK[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusOK)
 }
 
-func Created(msg string, data interface{}, meta *meta.Meta) Response {
+func Created[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusCreated)
 }
 
-func Accepted(msg string, data interface{}, meta *meta.Meta) Response {
+func Accepted[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusAccepted)
 }
 
-func NonAuthoritativeInfo(msg string, data interface{}, meta *meta.Meta) Response {
+func NonAuthoritativeInfo[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusNonAuthoritativeInfo)
 }
 
-func NoContent(msg string, data interface{}, meta *meta.Meta) Response {
+func NoContent[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusNoContent)
 }
 
-func ResetContent(msg string, data interface{}, meta *meta.Meta) Response {
+func ResetContent[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusResetContent)
 }
 
-func PartialContent(msg string, data interface{}, meta *meta.Meta) Response {
+func PartialContent[D any](msg string, data D, meta *meta.Meta) Response[D] {
 	return success(msg, data, meta, http.StatusPartialContent)
 }
 
-func success(msg string, data interface{}, meta *meta.Meta, code int) Response {
+func success[D any](msg string, data D, meta *meta.Meta, code int) Response[D] {
 
-	return &SuccessResponse{
+	return &SuccessResponse[D]{
 		Message: msg,
 		Status:  code,
 		Data:    data,
@@ -52,18 +52,18 @@ func success(msg string, data interface{}, meta *meta.Meta, code int) Response {
 	}
 }
 
-func (s *SuccessResponse) Error() string {
+func (s *SuccessResponse[_]) Error() string {
 	return ""
 }
 
-func (s *SuccessResponse) StatusCode() int {
+func (s *SuccessResponse[_]) StatusCode() int {
 	return s.Status
 }
 
-func (s *SuccessResponse) GetBody() ([]byte, error) {
+func (s *SuccessResponse[_]) GetBody() ([]byte, error) {
 	return json.Marshal(s)
 }
 
-func (s *SuccessResponse) GetData() interface{} {
+func (s *SuccessResponse[D]) GetData() D {
 	return s.Data
 }
