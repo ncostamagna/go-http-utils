@@ -1,5 +1,9 @@
 package response
 
-type Response[D any, B SuccessResponse[D] | ErrorResponse] struct {
-	Body B
+// Response
+type Response interface {
+	StatusCode() int
+	GetBody() ([]byte, error)
+	Error() string
+	GetData() interface{}
 }

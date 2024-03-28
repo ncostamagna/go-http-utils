@@ -1,3 +1,3 @@
-module github.com/ncostamagna/go_lib_response
+module github.com/ncostamagna/go_http_utils
 
 go 1.22
