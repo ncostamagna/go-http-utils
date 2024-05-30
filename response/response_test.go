@@ -2,7 +2,7 @@ package response_test
 
 import (
 	"encoding/json"
-	"github.com/ncostamagna/go_http_utils/response"
+	"github.com/ncostamagna/go-http-utils/response"
 	"testing"
 )
 

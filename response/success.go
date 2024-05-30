@@ -2,7 +2,7 @@ package response
 
 import (
 	"encoding/json"
-	"github.com/ncostamagna/go_http_utils/meta"
+	"github.com/ncostamagna/go-http-utils/meta"
 	"net/http"
 )
 

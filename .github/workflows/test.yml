@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+  pull_request:
+name: Test
+
+jobs:
+  test:
+    uses: ncostamagna/github-workflows-templates/.github/workflows/go-test.yml@feat/go-test-different-types
+    with:
+      type: pkg
+    secrets: inherit
