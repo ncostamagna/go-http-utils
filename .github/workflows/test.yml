@@ -8,7 +8,7 @@ name: Test
 
 jobs:
   test:
-    uses: ncostamagna/github-workflows-templates/.github/workflows/go-test.yml@feat/go-test-different-types
+    uses: ncostamagna/github-workflows-templates/.github/workflows/go-test.yml@main
     with:
       type: pkg
     secrets: inherit
